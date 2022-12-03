@@ -1,3 +1,16 @@
+/*********************************************************************************
+*  WEB322 – Assignment 06
+*  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.  No part of this
+*  assignment has been copied manually or electronically from any other source (including web sites) or 
+*  distributed to other students.
+* 
+*  Name: Amitoj Singh    Student ID: 159347210    Date: 02/12/2022 (dd/mm/yyyy)
+*
+*  Online (Cyclic) Link: https://long-teal-lemming-cape.cyclic.app/
+*
+********************************************************************************/ 
+
+
 const express = require('express');
 const blogData = require("./blog-service");
 const multer = require("multer");
