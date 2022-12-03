@@ -9,10 +9,10 @@
                 </tr>
                     {{#each session.user.loginHistory}}     
                     {{!-- #each will iterate through all times when user logged in --}}
-                        <tr>
-                            <td>{{  dateTime    }}</td>
-                            <td>{{  userAgent   }}</td>
-                        </tr>
+                    <tr>
+                        <td>{{  dateTime    }}</td>
+                        <td>{{  userAgent   }}</td>
+                    </tr>
                     {{/each}}
             </table>
         </div>
