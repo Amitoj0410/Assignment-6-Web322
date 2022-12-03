@@ -149,7 +149,7 @@ app.get('/posts', ensureLogin, (req, res) => {
     } else if (req.query.minDate) {
         queryPromise = blogData.getPostsByMinDate(req.query.minDate);
     } else {
-        queryPromise = blogData.getAllPosts()
+        queryPromise = blogData.getAllPosts();
     }
 
     queryPromise.then(data => {
