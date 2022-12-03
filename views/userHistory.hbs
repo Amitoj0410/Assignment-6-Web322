@@ -1,16 +1,17 @@
 <div class="row">
     <div class="col-md-12">
         <h3>{{session.user.userName}} ( {{session.user.email}} ) History</h3><hr>
-        <div class="table-responsive">
+        <div class="abc">
             <table class="table ">
                 <tr>
                     <th>Login Date/Time</th>
                     <th>Client Information</th>
                 </tr>
-                    {{#each session.user.loginHistory}}
+                    {{#each session.user.loginHistory}}     
+                    {{!-- #each will iterate through all times when user logged in --}}
                         <tr>
-                            <td>{{dateTime}}</td>
-                            <td>{{userAgent}}</td>
+                            <td>{{  dateTime    }}</td>
+                            <td>{{  userAgent   }}</td>
                         </tr>
                     {{/each}}
             </table>
