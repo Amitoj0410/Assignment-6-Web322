@@ -89,7 +89,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-    res.render("about123");
+    res.render("about");
 });
 
 app.get('/blog', async (req, res) => {
