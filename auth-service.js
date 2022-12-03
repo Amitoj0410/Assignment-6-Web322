@@ -2,7 +2,7 @@ const { rejects } = require('assert');
 const mongoose = require('mongoose');
 const { resolve } = require('path');
 var Schema = mongoose.Schema;
-var userSchema = new Schema({
+var userSchema = new Schema({           // creating user schema
     "userName": {
         type : String,
         unique : true
@@ -19,7 +19,7 @@ let User; // to be defined on new connection (see initialize)
 
 module.exports.initialize = function () {
     return new Promise(function (resolve, reject) {
-        //let pass1 = encodeURIComponent("process.env.#KaranMan1");
+        //let pass1 = encodeURIComponent("process.env.#KaranMan1");     //not working
         let db1 = mongoose.createConnection("mongodb+srv://Amitoj:%23KaranMan1@senecaweb.kjs2lm1.mongodb.net/?retryWrites=true&w=majority");
 
         db1.on('error', (err)=>{
@@ -47,7 +47,7 @@ module.exports.registerUser = function (userData) {
                 // everything good
                 resolve();
               }).catch(err => {
-                if(err.code == 11000)
+                if(err.code == 11000)       //check if error code is 11000
                 {
                     reject("User Name already taken");
                 }
