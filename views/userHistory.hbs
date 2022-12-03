@@ -7,14 +7,14 @@
                     <th>Login Date/Time</th>
                     <th>Client Information</th>
                 </tr>
-                <tbody>
+                {{!-- <tbody> --}}
                     {{#each session.user.loginHistory}}
                         <tr>
                             <td>{{dateTime}}</td>
                             <td>{{userAgent}}</td>
                         </tr>
                     {{/each}}
-                </tbody>
+                {{!-- </tbody> --}}
             </table>
         </div>
     </div>
