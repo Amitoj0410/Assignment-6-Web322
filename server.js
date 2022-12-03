@@ -221,7 +221,7 @@ app.get("/posts/delete/:id", ensureLogin, (req,res)=>{
 });
 
 app.get('/post/:id', ensureLogin, (req,res)=>{
-    blogData.getPostById(req.params.id).then(data=>{
+    blogData.getPostById(req.params.id).then(data=>{        //ensure login used in most of posts and categories routes
         res.json(data);
     }).catch(err=>{
         res.json({message: err});
@@ -336,7 +336,8 @@ app.post("/login", (req,res)=>{
     
         res.redirect('/posts');
     }).catch((err) => {
-        res.render("login", {errorMessage: err, userName: req.body.userName})
+        res.render("login",     //render login page with error message when exception
+        {errorMessage: err, userName: req.body.userName})
     })
 });
 
@@ -347,7 +348,7 @@ app.get("/logout", (req,res)=>{
 
 
 app.get("/userHistory", ensureLogin, (req,res)=>{
-    res.render("userHistory");
+    res.render("userHistory");      // rendering userHistory path
 });
 
 

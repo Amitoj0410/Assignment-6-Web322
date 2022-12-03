@@ -2,7 +2,7 @@ const { rejects } = require('assert');
 const mongoose = require('mongoose');
 const { resolve } = require('path');
 var Schema = mongoose.Schema;
-var userSchema = new Schema({           // creating user schema
+var userSchema = new Schema({           // creating user schema with userName, password, email, and loginHistory as members
     "userName": {
         type : String,
         unique : true
@@ -21,7 +21,7 @@ module.exports.initialize = function () {
     return new Promise(function (resolve, reject) {
         //let pass1 = encodeURIComponent("process.env.#KaranMan1");     //not working
         let db1 = mongoose.createConnection("mongodb+srv://Amitoj:%23KaranMan1@senecaweb.kjs2lm1.mongodb.net/?retryWrites=true&w=majority");
-
+        // %23 in above means #. Putting only # will cause error
         db1.on('error', (err)=>{
             reject(err); // reject the promise with the provided error
         });
@@ -40,18 +40,18 @@ module.exports.registerUser = function (userData) {
         {
             reject("Passwords do not match");
         }
-        else
+        else        //passwords match
         {
             let newUser = new User(userData);
             newUser.save().then(() => {
                 // everything good
                 resolve();
               }).catch(err => {
-                if(err.code == 11000)       //check if error code is 11000
+                if(err.code == 11000)       //check if user name is already taken 
                 {
                     reject("User Name already taken");
                 }
-                else
+                else                        //any other type of error
                 {
                     reject("There was an error creating the user: " + err);
                 }
@@ -63,14 +63,14 @@ module.exports.registerUser = function (userData) {
 
 module.exports.checkUser = function (userData) {
     return new Promise(function (resolve, reject) {
-        User.find({ userName: userData.userName })
+        User.find({ userName: userData.userName })          // trying to find a user with username as provide by userData
         .exec()
         .then((users) => {
-            if(users[0].password != userData.password)
+            if(users[0].password != userData.password)      // if entered password doesnt match
             {
                 reject("Incorrect Password for user: " + userData.userName)
             }
-            else if(users[0].password == userData.password)
+            else if(users[0].password == userData.password)     // else if entered password was correct
             {
                 //recording history in loginHistory by using push method
                 users[0].loginHistory.push({dateTime: (new Date()).toString(), userAgent: userData.userAgent});
